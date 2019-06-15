@@ -80,7 +80,7 @@ export class LoginPage {
 
            if(data.success == true){
             
-            this.navCtrl.setRoot(HomePage).then(()=>{
+            this.navCtrl.setRoot(HomePage,{data}).then(()=>{
               loader.dismiss()
             })
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController, AlertController } from 'ionic-angular';
+import { NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
 import { Socket } from 'ng-socket-io';
 // import { ChatRoomPage } from "../chat-room/chat-room"
 // import { Observable } from 'rxjs/Observable';
@@ -46,6 +46,7 @@ export class HomePage {
 		public alertCtrl: AlertController,
 		public socket: Socket, 
 		public storage: Storage,
+		private navParams: NavParams,
 		// public http: Http,
 		// public authService: AuthProvider,
 		// public config: ConfigProvider,	
@@ -61,14 +62,18 @@ export class HomePage {
  
 	ionViewDidLoad(){
 		// this.getOrders()
+
+		let id = this.navParams.get('data')._id;
+		this.getOrdersById(id);
+		
 		
 		this.socket.on('connect',()=>{
 			var sessionid = this.socket.ioSocket.id;
 		})  
 
 		this.storage.get('user').then((data:any)=>{
-			console.log("USER DATA:",data)			 
-
+			// console.log("USER DATA:",data)			 
+			/*
 			if(data.data._id == undefined){
 				let id = data.user._id
 				this.getOrdersById(id);
@@ -79,6 +84,7 @@ export class HomePage {
 				let id = data.user._id
 				this.getOrdersById(id);
 			}
+			*/
 			// console.log("TYPEOFID",typeof(id))
 
 			// console.log("ID:",id);
