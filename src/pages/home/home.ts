@@ -67,13 +67,23 @@ export class HomePage {
 		})  
 
 		this.storage.get('user').then((data:any)=>{
-			console.log("USER DATA:",data)
-			let id = data.data._id
-			console.log("TYPEOFID",typeof(id))
+			console.log("USER DATA:",data)			 
 
-			console.log("ID:",id);
+			if(data.data._id == undefined){
+				let id = data.user._id
+				this.getOrdersById(id);
+			}else if(data.data.id){
+				let id = data.data._id
+				this.getOrdersById(id);
+			}else if(data.user.id){
+				let id = data.user._id
+				this.getOrdersById(id);
+			}
+			// console.log("TYPEOFID",typeof(id))
 
-			this.getOrdersById(id);
+			// console.log("ID:",id);
+
+			
 		})
 		
 	}
