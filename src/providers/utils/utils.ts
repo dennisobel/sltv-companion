@@ -14,6 +14,16 @@ export class UtilsProvider {
 		updateHomeDeliveryURL: "http://localhost:4000/homedelivery"
 	}
 
+	private online = {
+		getcartsURL:"https://genieinmypocket.herokuapp.com/getcarts",
+		getcartbyidURL:"https://genieinmypocket.herokuapp.com/getcartbyid/",
+		deliveredURL:"https://genieinmypocket.herokuapp.com/delivered",
+		deliveredTrueURL:"https://genieinmypocket.herokuapp.com/deliveredtrue",
+		readyURL:"https://genieinmypocket.herokuapp.com/ready",
+		getReadyURL:"https://genieinmypocket.herokuapp.com/getready",
+		updateHomeDeliveryURL: "https://genieinmypocket.herokuapp.com/homedelivery"
+	}
+
 	constructor(
 		public http: Http
 	){}

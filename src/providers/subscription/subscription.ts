@@ -10,6 +10,11 @@ export class SubscriptionProvider {
     CheckSubscriptionURL: "http://localhost:4000/checksubscription/",
   }
 
+  private online = {
+    SubscribeURL: "https://genieinmypocket.herokuapp.com/subscribe",
+    CheckSubscriptionURL: "https://genieinmypocket.herokuapp.com/checksubscription/",
+  }
+
   constructor(public http: Http) {
     console.log('Hello SubscriptionProvider Provider');
   }

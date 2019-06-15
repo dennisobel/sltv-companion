@@ -34,8 +34,8 @@ import { ConfigProvider } from '../providers/config/config';
 import { UtilsProvider } from '../providers/utils/utils';
 import { AuthenticationProvider } from '../providers/authentication/authentication';
 import { SubscriptionProvider } from '../providers/subscription/subscription';
-// const config: SocketIoConfig = { url: 'https://sltvsocket.herokuapp.com/', options: {} };
-const config: SocketIoConfig = { url: 'http://localhost:4000/', options: {} };
+const config: SocketIoConfig = { url: 'https://genieinmypocket.herokuapp.com/', options: {} };
+// const config: SocketIoConfig = { url: 'http://localhost:4000/', options: {} };
 
 @NgModule({
   declarations: [

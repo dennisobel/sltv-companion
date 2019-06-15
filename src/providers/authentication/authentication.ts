@@ -14,6 +14,14 @@ export class AuthenticationProvider {
     AllUsersURL: "http://localhost:4000/r_getusers"
   }
 
+  private online = {
+    SignupURL: "https://genieinmypocket.herokuapp.com/r_signup",
+    LoginURL: "https://genieinmypocket.herokuapp.com/r_login",
+    OTPURL: "https://genieinmypocket.herokuapp.com/r_otp",
+    SingleUserURL: "https://genieinmypocket.herokuapp.com/r_getuser/",
+    AllUsersURL: "https://genieinmypocket.herokuapp.com/r_getusers"
+  }
+
   constructor(public http: Http) {}
 
   Signup(data){
@@ -23,7 +31,7 @@ export class AuthenticationProvider {
       headers.append("Accept","application/json"); 
       headers.append("Content-Type","application/json");   
       
-      this.http.post(this.offline.SignupURL,data,{headers})
+      this.http.post(this.online.SignupURL,data,{headers})
         .subscribe(res => {  
           resolve(res.json());
       },(err)=>{
@@ -39,7 +47,7 @@ export class AuthenticationProvider {
       headers.append("Accept","application/json"); 
       headers.append("Content-Type","application/json");   
 
-      this.http.post(this.offline.LoginURL,data,{headers})
+      this.http.post(this.online.LoginURL,data,{headers})
         .subscribe(res => {  
           resolve(res.json());
       },(err)=>{
@@ -51,7 +59,7 @@ export class AuthenticationProvider {
   SingleUser(userName){
     console.log("SINGLE USER NAME:",userName)
     return new Promise((resolve,reject) => {
-      this.http.get(this.offline.SingleUserURL+userName)
+      this.http.get(this.online.SingleUserURL+userName)
       .subscribe(res => {
         resolve(res.json());
       },(err)=>{
@@ -62,7 +70,7 @@ export class AuthenticationProvider {
 
   AllUsers(){
     return new Promise((resolve,reject) => {
-      this.http.get(this.offline.AllUsersURL)
+      this.http.get(this.online.AllUsersURL)
       .subscribe(res => {
         resolve(res.json());
       },(err)=>{
@@ -78,7 +86,7 @@ export class AuthenticationProvider {
       headers.append("Accept","application/json"); 
       headers.append("Content-Type","application/json");  
 
-      this.http.post(this.offline.OTPURL,data,{headers})
+      this.http.post(this.online.OTPURL,data,{headers})
       .subscribe(res => {
         resolve(res.json());
       },(err)=>{
