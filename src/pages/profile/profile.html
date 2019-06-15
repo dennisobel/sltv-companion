@@ -1,0 +1,26 @@
+<ion-header #head>
+  <ion-navbar color="forestgreen" hideBackButton>
+    <button ion-button show menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button> 
+    
+    <ion-title>Profile</ion-title>
+
+    <ion-buttons end>
+      <button clear (click)="logout()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>    
+</ion-header>
+
+
+<ion-content padding>
+    <ion-toolbar color="">
+      <ion-item>
+        <ion-label>Private</ion-label>
+        <ion-toggle color="forestgreen" [(ngModel)]="homedelivery" (ionChange)="updateDelivery(homedelivery)" checked="false"></ion-toggle>
+      </ion-item>    
+    </ion-toolbar>  
+
+</ion-content>

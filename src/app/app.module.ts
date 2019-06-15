@@ -16,6 +16,10 @@ import { SignupPage } from '../pages/signup/signup';
 import { OtpPage } from '../pages/otp/otp';
 import { OrderdetailPage } from '../pages/orderdetail/orderdetail';
 import { DeliveredPage } from '../pages/delivered/delivered';
+import { DeliveredViewPage } from '../pages/delivered-view/delivered-view';
+import { ProfilePage } from '../pages/profile/profile';
+import { ReadyPage } from '../pages/ready/ready';
+import { ReadyviewPage } from '../pages/readyview/readyview';
 
 
 
@@ -29,6 +33,7 @@ import { AuthProvider } from '../providers/auth/auth';
 import { ConfigProvider } from '../providers/config/config';
 import { UtilsProvider } from '../providers/utils/utils';
 import { AuthenticationProvider } from '../providers/authentication/authentication';
+import { SubscriptionProvider } from '../providers/subscription/subscription';
 // const config: SocketIoConfig = { url: 'https://sltvsocket.herokuapp.com/', options: {} };
 const config: SocketIoConfig = { url: 'http://localhost:4000/', options: {} };
 
@@ -42,7 +47,11 @@ const config: SocketIoConfig = { url: 'http://localhost:4000/', options: {} };
     OtpPage,
     NewcartPage,
     OrderdetailPage,
-    DeliveredPage
+    DeliveredPage,
+    DeliveredViewPage,
+    ReadyPage,
+    ReadyviewPage,
+    ProfilePage
   ],
   imports: [
     HttpModule,
@@ -61,7 +70,10 @@ const config: SocketIoConfig = { url: 'http://localhost:4000/', options: {} };
     OtpPage,
     NewcartPage,
     OrderdetailPage,
-    DeliveredPage
+    DeliveredPage,
+    ProfilePage,
+    ReadyPage,
+    ReadyviewPage
   ],
   providers: [
     StatusBar,
@@ -73,7 +85,8 @@ const config: SocketIoConfig = { url: 'http://localhost:4000/', options: {} };
     ConfigProvider,
     AuthProvider,
     UtilsProvider,
-    AuthenticationProvider
+    AuthenticationProvider,
+    SubscriptionProvider
   ]
 })
 export class AppModule {}

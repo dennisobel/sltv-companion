@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, ActionSheetController, ModalController, NavParams, Platform } from 'ionic-angular';
 import { ConfigProvider } from '../../providers/config/config'
 import { UtilsProvider } from '../../providers/utils/utils';
 import { Storage } from '@ionic/storage';
+// import { ReadyPage } from '../ready/ready';
+import { ReadyPage } from '../../pages/ready/ready';
 
 @IonicPage()
 @Component({
@@ -22,6 +24,9 @@ export class OrderdetailPage {
   
 
   constructor(
+    private platform: Platform,
+    private modalCtrl: ModalController,
+    private actionsheetCtrl: ActionSheetController,
     private navCtrl: NavController, 
     private navParams: NavParams,
     private config: ConfigProvider,
@@ -65,4 +70,29 @@ export class OrderdetailPage {
   onClose(){
     this.navCtrl.pop()
   }
+
+  openMenu(){
+    let actionSheet = this.actionsheetCtrl.create({
+      title: "Cart Actions",
+      cssClass: 'action-sheets-basic-page',
+      buttons: [
+        {
+          text:"Ready",
+          icon: !this.platform.is("ios")?"cash":null,
+          handler: () => {
+            this.utils.Ready(this.orderDetails).then((data:any)=>{
+              console.log('READY SERVER FEEDBACK:',data)
+              if(data.success === true){
+                this.modalCtrl.create(ReadyPage,{readyOrders:data,from:'orderdetails'}).present() 
+              }else if(data.success === false){
+                console.log('ENCOUNTERED ERROR')
+              }
+            })
+          }
+        }
+      ]
+    })
+
+    actionSheet.present()
+  }  
 }

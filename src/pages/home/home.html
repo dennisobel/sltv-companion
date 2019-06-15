@@ -25,16 +25,12 @@
   </ion-toolbar>
 
   <div [ngSwitch]="listorders">
-    <div *ngSwitchCase="'orders'">   
-      
-          
-           
-        
-        <ion-list *ngFor="let cart of cart">
+    <div *ngSwitchCase="'orders'"> 
+        <ion-list *ngFor="let cart of reversedCart">
           <ion-item-sliding>
-            <ion-item>
+            <ion-item (click)="viewDetail(cart)">
               <ion-thumbnail item-start>
-                <img [(ngModel)]="configuration" src="assets/imgs/remote.jpg" ngDefaultControl>
+                <img src="assets/imgs/remote.jpg" ngDefaultControl>
               </ion-thumbnail>
               <p style="color:#021C1E;"><strong>{{cart.phonenumber}}</strong></p>   
             </ion-item>

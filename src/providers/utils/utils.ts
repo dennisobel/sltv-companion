@@ -9,7 +9,9 @@ export class UtilsProvider {
 		getcartbyidURL:"http://localhost:4000/getcartbyid/",
 		deliveredURL:"http://localhost:4000/delivered",
 		deliveredTrueURL:"http://localhost:4000/deliveredtrue",
-		readyURL:"http://localhost:4000/ready"
+		readyURL:"http://localhost:4000/ready",
+		getReadyURL:"http://localhost:4000/getready",
+		updateHomeDeliveryURL: "http://localhost:4000/homedelivery"
 	}
 
 	constructor(
@@ -92,6 +94,33 @@ export class UtilsProvider {
 				resolve(res.json())
 			},(err)=>{
 				reject(err);
+			})
+		})
+	}
+
+	GetReady(){
+		return new Promise((reject,resolve)=>{
+			this.http.get(this.path.getReadyURL)
+			.subscribe(res => {
+				resolve(res.json())
+			},(err)=>{
+				reject(err);
+			})
+		})
+	}
+
+	// HomeDelivery
+	HomeDelivery(data){
+		return new Promise((resolve,reject)=>{
+			let headers = new Headers();
+			headers.append("Accept","application/json");
+			headers.append("Content-Type", "application/json");
+
+			this.http.post(this.path.updateHomeDeliveryURL,data,{headers})
+			.subscribe(res => {
+				resolve(res.json())
+			},(err)=>{
+				reject(err)
 			})
 		})
 	}

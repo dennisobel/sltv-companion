@@ -1,0 +1,33 @@
+<ion-content padding>
+
+  <ion-badge color="goldenrod" style="font-size:1.9rem; color: #247e01;"><strong>Pick a subscription!</strong></ion-badge>
+    
+      <hr>
+  
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6 col-md-4 col-lg-3 *ngFor="let item of subscription">
+          <div class="account" (click)="handleSubscription(item)">
+            <strong><p style="color:#ff812c">{{item.period}}</p></strong>
+            
+            <strong>
+            <p class="countNum">
+              Ksh {{item.amount}}
+            </p>
+            </strong>
+  
+            <strong>
+            <p>
+              Ksh {{item.description}}
+            </p>
+            </strong>          
+            <!--<button ion-button block small clear color="faceColor" (click)="handleApply(item)">Apply</button>-->
+          </div>
+          
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>    
+        
+  </ion-content>
+  

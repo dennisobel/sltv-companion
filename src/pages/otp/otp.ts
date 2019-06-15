@@ -46,7 +46,7 @@ export class OtpPage {
           this.nav.setRoot(page)
         })
         */
-       this.navCtrl.setRoot(HomePage,{data:data.docs[0]})
+       this.navCtrl.setRoot(page,{data:data.docs[0]})
       }else if(data.success == false){
         // handle wrong otp
         // Handle Resend OTP

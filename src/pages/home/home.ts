@@ -23,6 +23,7 @@ export class HomePage {
 	listorders="orders"
 	nickname = "";
 	cart:any[]=[];
+	reversedCart:any[]=[];
 	delivered:any[]=[];
 	_delivered:any[]=[];
 	_del:any[]=[];
@@ -51,78 +52,53 @@ export class HomePage {
 		public utilsProvider: UtilsProvider,	 
 		// public get_movies: MoviesProvider
 	){
-
-		/*
-		this.socket.on("new_order", (data) => {		
-			
-			// console.log("Receiving data from server")
-			
-
-			this.utilsProvider.postMovieTvShowCart(data)
-			.subscribe(res => {})	
-
-			this.setValue(data)
-			this.presentAlert(data)	
+		this.socket.on('notifyRetailer',(data)=>{
+			console.log('INCOMING ORDER:',data);
+			// this.getOrders();
+			this.ionViewDidLoad()
 		})	
-		*/
-
-		this.socket.on("orders",(data)=>{
-			console.log("new order:",data)
-		})		
-			
 	}
-
+ 
 	ionViewDidLoad(){
+		// this.getOrders()
+		
 		this.socket.on('connect',()=>{
 			var sessionid = this.socket.ioSocket.id;
 		})  
 
-		console.log("HOME DID LOAD")
-		// this.getValue()	
-		// this.getDelivered()
-		/*
-		this.utilsProvider.getCartsPosted()
-		.then((data:any)=>{
-			console.log("ORDERS:",data)
-			this.cart = data.data
-		})
-		*/
-
-
 		this.storage.get('user').then((data:any)=>{
 			console.log("USER DATA:",data)
-			let id = data.user._id
+			let id = data.data._id
 			console.log("TYPEOFID",typeof(id))
 
 			console.log("ID:",id);
 
-			// this.utilsProvider.GetCartById(id)
-			this.utilsProvider.getCartsPosted()
-			.then((data:any)=>{
-				console.log("RETAILER CART:",data)
-				this.cart = data.data
-			})
+			this.getOrdersById(id);
 		})
-
-
-
-		/*
-		this.storage.get('user')
-		.then((value)=>{
-			// console.log(value.username)
-			this.nickname = value.username
-			this.socket.emit("add_user",{username:this.nickname})
-		})
-
-		this.config.getTmdbConfig()
-		.subscribe(config => {
-			this.configuration = config.images
-		})
-		*/
+		
 	}
 
 	viewDetail(cart){
 		this.navCtrl.push(OrderdetailPage,{cart})
+	}
+
+	getOrders(){
+		this.utilsProvider.getCartsPosted()
+		.then((data:any)=>{
+			console.log("RETAILER CART:",data)
+			this.cart = data.data;
+			this.reversedCart = this.cart.reverse();
+			return this.cart
+		})		
+	}
+
+	getOrdersById(id){
+		this.utilsProvider.GetCartById(id).then((data:any)=>{
+			console.log('ORDERS BY ID SERVER FEEDBACK:',data)
+			this.cart = data.data;
+			this.reversedCart = this.cart.reverse();
+			return this.cart
+		})
 	}
 
 	/*

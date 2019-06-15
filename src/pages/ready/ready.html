@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar color="forestgreen">
+      <button *ngIf="menu == true" ion-button show menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button> 
+            
+        <ion-title text-center>Ready Orders</ion-title>       
+  </ion-navbar>    
+</ion-header>
+
+<ion-content padding>
+
+    <ion-list *ngFor="let item of readyOrders">
+        <ion-card class="curves" (click)='viewReadyDetails(item)'>
+        <ion-item-sliding>
+          <ion-item>
+            <ion-thumbnail item-start>
+                <img src="assets/imgs/user.png" ngDefaultControl>
+            </ion-thumbnail>
+            <p style="color:#021C1E;"><strong>{{item.phonenumber}}</strong></p>    
+          </ion-item>
+          <ion-item-options side="right">
+            <button ion-button color="strawberry">
+              <ion-icon name="trash"></ion-icon>
+            </button>
+
+            <button ion-button color='forestgreen' (click)='viewReadyDetails(item)'>
+              <ion-icon name='md-eye'></ion-icon>
+            </button>
+          </ion-item-options>
+        </ion-item-sliding>
+      </ion-card>
+    </ion-list>      
+  
+
+    <!--
+    <ion-fab left top edge>
+        <button ion-fab mini color="forestgreen" (click)="onClose()"><ion-icon name="md-close"></ion-icon></button>
+    </ion-fab>
+    -->
+
+    <div *ngIf="close == true">
+      <ion-fab left top edge>
+          <button ion-fab mini color="forestgreen" (click)="onClose()"><ion-icon name="md-close"></ion-icon></button>
+      </ion-fab>
+    </div>  
+  
+</ion-content>
