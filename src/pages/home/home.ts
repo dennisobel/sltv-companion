@@ -63,7 +63,8 @@ export class HomePage {
 	ionViewDidLoad(){
 		// this.getOrders()
 
-		let id = this.navParams.get('data')._id;
+		let data = this.navParams.get('data')
+		let id = data.data._id
 		this.getOrdersById(id);
 		
 		
@@ -102,7 +103,7 @@ export class HomePage {
 		this.utilsProvider.getCartsPosted()
 		.then((data:any)=>{
 			console.log("RETAILER CART:",data)
-			this.cart = data.data;
+			this.cart.push(data.data);
 			this.reversedCart = this.cart.reverse();
 			return this.cart
 		})		
@@ -111,7 +112,7 @@ export class HomePage {
 	getOrdersById(id){
 		this.utilsProvider.GetCartById(id).then((data:any)=>{
 			console.log('ORDERS BY ID SERVER FEEDBACK:',data)
-			this.cart = data.data;
+			this.cart.push(data.data);
 			this.reversedCart = this.cart.reverse();
 			return this.cart
 		})

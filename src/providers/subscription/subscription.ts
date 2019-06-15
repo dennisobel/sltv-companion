@@ -26,7 +26,7 @@ export class SubscriptionProvider {
       headers.append("Accept","application/json"); 
       headers.append("Content-Type","application/json");   
       
-      this.http.post(this.offline.SubscribeURL,data,{headers})
+      this.http.post(this.online.SubscribeURL,data,{headers})
         .subscribe(res => {  
           resolve(res.json());
       },(err)=>{
@@ -37,7 +37,7 @@ export class SubscriptionProvider {
 
   CheckSubscription(userName){
     return new Promise((resolve,reject) => {
-      this.http.get(this.offline.CheckSubscriptionURL+userName)
+      this.http.get(this.online.CheckSubscriptionURL+userName)
       .subscribe(res => {
         resolve(res.json());
       },(err)=>{
